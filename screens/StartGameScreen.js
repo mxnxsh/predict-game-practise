@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
+import {
+  Button,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+  Dimensions
+} from 'react-native'
+
 import BodyText from '../components/BodyText'
 import Card from '../components/Card'
 import Input from '../components/Input'
 import NumberContainer from '../components/NumberContainer'
 import TitleText from '../components/TitleText'
 import Colors from '../constants/colors'
+import MainButton from '../components/MainButton'
+
 const StartGameScreen = props => {
   const [enteredValue, setEnteredValue] = useState('')
   const [confirmed, setConfirmed] = useState(false)
@@ -42,10 +53,9 @@ const StartGameScreen = props => {
     confirmedOutput = <Card style={styles.summaryContainer}>
       <BodyText>You selected</BodyText>
       <NumberContainer>{selectedNumber}</NumberContainer>
-      <Button
-        title='Start Game'
+      <MainButton
         onPress={() => props.onStartGame(selectedNumber)}
-      />
+      >Start Game</MainButton>
     </Card>
   }
 
@@ -102,8 +112,9 @@ const styles = StyleSheet.create({
 
   },
   inputConatiner: {
-    width: 300,
-    maxWidth: '80%',
+    width: '80%',
+    maxWidth: '90%',
+    minWidth: 300,
     alignItems: 'center',
 
   },
@@ -114,7 +125,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   button: {
-    width: '40%'
+    width: Dimensions.get('window').width / 4
   },
   input: {
     width: 50,
